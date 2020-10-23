@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CountriesService } from "../Constants/country";
-import { MouseEvent } from "@agm/core";
 import {
   HttpClient,
   HttpErrorResponse,
@@ -30,6 +29,7 @@ export class CityComponent implements OnInit {
   // initial center position for the map
   lat: number = 0;
   lng: number = 0;
+  results: any;
   constructor(
     private fb: FormBuilder,
     private country: CountriesService,
@@ -67,7 +67,8 @@ export class CityComponent implements OnInit {
         `https://maps.googleapis.com/maps/api/geocode/json?address=" + ${addr}&key=AIzaSyBXwPGCWw1mbLIWL_Ihbxbiq0XeuxSxDlY`
       )
       .subscribe((res) => {
-        res.results.map((data) => {
+        this.results = res['results'];
+        this.results.map((data) => {
           this.lat = data.geometry.location.lat;
           this.lng = data.geometry.location.lng;
         })
@@ -95,13 +96,7 @@ export class CityComponent implements OnInit {
     console.log(`clicked the marker: ${label || index}`);
   }
 
-  mapClicked($event: MouseEvent) {
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: true
-    });
-  }
+
 
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
