@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* Standard */
+  overflow-x: hidden;
+}
+
+.form-div .form-div-inner .form-group .form-control.date-pic {
+  padding-top: 12px;
+  position: relative;
+
+
+}
+
+select {
+  &.border-invalid::after {
+    content: " ";
+    position: absolute;
+    top: 50% !important;
+    // margin-top: 12px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #aaaaaa;
+  }
+}
+
+.color-text-red {
+  color: red !important;
+}
+
+agm-map {
+  height: 300px;
+}

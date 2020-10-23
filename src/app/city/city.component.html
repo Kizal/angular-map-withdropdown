@@ -1,0 +1,57 @@
+<div class="jumbotron  form cardWidth">
+  <div class="col-12 mx-auto pb-5">
+    <form [formGroup]="locationDetailsForm">
+      <div class="d-flex  justify-content-between flex-wrap ">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+        <div >
+          <div class="form-group">
+            <label for="state" class="fs-16 mb-1">State</label>
+            <select class="form-control  select-form-group" id="state" formControlName="state"
+              [ngClass]="{ 'border-invalid': submitted && f.state.errors }"
+              (change)="onChangeState($event.target.value)">
+              <option class="form-control-option" value="">--Select State--</option>
+              <option *ngFor="let state of stateInfo; let j = index" value="{{state.state}}">{{state.state}}
+              </option>
+            </select>
+            <sub *ngIf="submitted && f.state.hasError('required')" class="color-text-red">State is
+              required</sub>
+          </div>
+        </div>
+        <div >
+          <div class="form-group ">
+            <label for="city" class="fs-16 mb-1">City</label>
+            <select class="form-control select-form-group  mon-reg-class" id="city" formControlName="city"
+              [ngClass]="{ 'border-invalid': submitted && f.city.errors }" (change)="onChangeCity($event.target.value)">
+              <option class="form-control-option" value="">--Select CIty--</option>
+              <option *ngFor="let city of cityInfo; let k = index" value="{{city}}">{{city}}</option>
+            </select>
+            <sub *ngIf="submitted && f.city.hasError('required')" class="color-text-red">City is
+              required</sub>
+          </div>
+        </div>
+      </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
+            (mapClick)="mapClicked($event)">
+
+            <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat"
+              [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+
+              <agm-info-window>
+                <strong>InfoWindow content</strong>
+              </agm-info-window>
+
+            </agm-marker>
+
+            <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true"
+              [editable]="true">
+            </agm-circle>
+
+          </agm-map>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</div>

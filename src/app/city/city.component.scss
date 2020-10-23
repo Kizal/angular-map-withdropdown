@@ -1,0 +1,28 @@
+.jumbotron {
+  .form-buttons {
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+  }
+}
+
+.select-form-group {
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    margin-top: 12px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+}
+
