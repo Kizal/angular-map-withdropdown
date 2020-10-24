@@ -1,3 +1,4 @@
+import { ConstantValues } from './../Constants/constants';
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { CountriesService } from "../Constants/country";
@@ -7,6 +8,7 @@ import {
   HttpHeaders,
   HttpResponse,
 } from "@angular/common/http";
+
 
 @Component({
   selector: "app-city",
@@ -33,7 +35,8 @@ export class CityComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private country: CountriesService,
-    private http: HttpClient
+    private http: HttpClient,
+    public constantValue: ConstantValues,
   ) {
     this.locationDetailsForm = this.fb.group({
       state: ["", Validators.required],
@@ -64,7 +67,7 @@ export class CityComponent implements OnInit {
     const addr = JSON.stringify(this.locationDetailsForm.value);
     return this.http
       .get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=" + ${addr}&key=AIzaSyBXwPGCWw1mbLIWL_Ihbxbiq0XeuxSxDlY`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=" + ${addr}&key=${this.constantValue.mapKey}`
       )
       .subscribe((res) => {
         this.results = res['results'];

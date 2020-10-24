@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class ConstantValues {
+  public mapKey = "AIzaSyBXwPGCWw1mbLIWL_Ihbxbiq0XeuxSxDlY"
   static city = {
     states: [
       {
@@ -890,4 +891,5 @@ export class ConstantValues {
       },
     ],
   };
+
 }
